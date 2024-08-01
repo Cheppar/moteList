@@ -2,24 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { StyleSheet } from "react-native";
 import { Text, Card, Button, Avatar } from "react-native-paper";
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 
 const Title = styled(Text)`
-  padding: 16px;
-  color: red;
+  padding: ${(props) => props.theme.space[3]};
+  color: ${(props) => props.theme.colors.ui.primary};
+  font-family: ${(props) => props.theme.fonts.body};
 `;
 
 const RestaurantCard = styled(Card)`
-  background-color: red;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`
-  color: red;
-  padding: 22px;
+  padding: ${(props) => props.theme.space[0]};
 `;
+
+const RestaurantCardContent = styled(Card.Content)``;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
-    name = "Bala Clava",
+    name = "Merica Hotel",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
@@ -32,18 +35,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   } = restaurant;
 
   return (
-    <Card>
-      <Card.Cover source={{ uri: photos[0] }} />
+    <RestaurantCard>
+      <RestaurantCardCover source={{ uri: photos[0] }} />
 
-      <Card.Content>
+      <RestaurantCardContent>
         <Title>{name}</Title>
-      </Card.Content>
-    </Card>
+      </RestaurantCardContent>
+    </RestaurantCard>
   );
 };
-
-const styles = StyleSheet.create({
-  title: {
-    padding: 16,
-  },
-});

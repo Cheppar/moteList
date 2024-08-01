@@ -15,23 +15,23 @@ import { RestaurantInfoCard } from "../components/restaurant-info-card-component
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  margin-top: 22px;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}}px`};
 `;
 
 const Search = styled.View`
-  padding: 16px;
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 const Listing = styled.View`
   flex: 1;
-  background-color: skyblue;
-  padding: 16px;
+  background-color: ${(props) => props.theme.colors.bg.primary};
+  padding: ${(props) => props.theme.space[3]};
 `;
 
 export const RestaurantsScreen = () => (
   <SafeArea>
     <Search>
-      <Searchbar />
+      <Searchbar placeholder="Search" />
     </Search>
     <Listing>
       <RestaurantInfoCard />
